@@ -1,10 +1,6 @@
 
 version: '3'
 
-#Red
-networks:
-  red_laravel:
-
 services:
 
 #Servidor 
@@ -15,8 +11,6 @@ services:
       - $PWD/blog:/var/www/html
     ports:
       - 8080:80
-    networks:
-       red_laravel:
        
 #Base de datos     
   db:
@@ -31,10 +25,6 @@ services:
        MYSQL_PASSWORD: admin
     volumes:
       - $PWD/data:/var/lib/mysql2
-    networks:
-      red_laravel:
-        aliases:
-          - database
       
 #administrador de base de datos
   adminer:
