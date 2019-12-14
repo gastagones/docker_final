@@ -1,0 +1,48 @@
+
+version: '3'
+
+#Red
+networks:
+  red_laravel:
+
+services:
+
+#Servidor 
+  server:
+    image: patagas/php-apache 
+    container_name: php-apache
+    volumes:
+      - $PWD/blog:/var/www/html
+    ports:
+      - 8080:80
+    networks:
+       red_laravel:
+       
+#Base de datos     
+  db:
+    image: mysql:5.7 
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 3306:3306
+    environment:
+       MYSQL_ROOT_PASSWORD: root
+       MYSQL_DATABASE: laraveldb
+       MYSQL_USER: admin
+       MYSQL_PASSWORD: admin
+    volumes:
+      - $PWD/data:/var/lib/mysql2
+    networks:
+      red_laravel:
+        aliases:
+          - database
+      
+#administrador de base de datos
+  adminer:
+    image: adminer
+    ports:
+      - "8000:8080"
+    container_name: adminer
+  
+
+
+
