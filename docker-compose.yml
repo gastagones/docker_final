@@ -5,7 +5,7 @@ services:
 
 #Servidor 
   server:
-    image: patagas/php-apache:1.0 
+    image: php-apache
     container_name: php-apache
     volumes:
       - $PWD/blog:/var/www/html
